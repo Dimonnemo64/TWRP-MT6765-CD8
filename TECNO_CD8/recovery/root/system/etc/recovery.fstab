@@ -3,7 +3,7 @@
 # mount point                 fstype                device                                         flags
 
 #########################################################super-image#########################################################
-#/system		                     ext4	   /dev/block/mapper/system                                  flags=backup=1;display="System ext4";flashimg=1;wipeingui
+#/system		                    ext4	   /dev/block/mapper/system                                 flags=backup=1;display="System ext4";flashimg=1;wipeingui
 #/vendor                        ext4    /dev/block/mapper/vendor                                  flags=backup=1;display="Vendor ext4";flashimg=1
 #/product                       ext4    /dev/block/mapper/product                                 flags=backup=1;display="Product ext4";flashimg=1
 #/super_image                   emmc    /dev/block/platform/bootdevice/by-name/super              flags=backup=1;display="super"
