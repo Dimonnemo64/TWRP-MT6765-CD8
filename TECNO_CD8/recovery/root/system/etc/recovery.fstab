@@ -1,22 +1,12 @@
 #fstab file by lopestom
 #
-# mount point                 fstype                device                                         flags
-
+# mount point                 fstype             device                                          flags
 #########################################################super-image#########################################################
-#/system		                    ext4	   /dev/block/mapper/system                                 flags=backup=1;display="System ext4";flashimg=1;wipeingui
-#/vendor                        ext4    /dev/block/mapper/vendor                                  flags=backup=1;display="Vendor ext4";flashimg=1
-#/product                       ext4    /dev/block/mapper/product                                 flags=backup=1;display="Product ext4";flashimg=1
-#/super_image                   emmc    /dev/block/platform/bootdevice/by-name/super              flags=backup=1;display="super"
-#
-/system                        ext4    system                                                    flags=display="System";backup=1;logical;
-/system_image                  emmc    system                                                    flags=display="System image";backup=1;flashimg=1;logical;
-/vendor                        ext4    vendor                                                    flags=display="Vendor";backup=1;logical;
-/vendor_image                  emmc    vendor                                                    flags=display="Vendor image";backup=1;flashimg=1;logical;
-/product                       ext4    product                                                   flags=display="Product";backup=1;logical;
-/product_image                 emmc    product                                                   flags=display="Product image";backup=1;flashimg=1;logical;
+/system		                     ext4	   /dev/block/mapper/system                                  flags=backup=1;display="System ext4";flashimg=1;wipeingui
+/vendor                        ext4    /dev/block/mapper/vendor                                  flags=backup=1;display="Vendor ext4";flashimg=1
+/product                       ext4    /dev/block/mapper/product                                 flags=backup=1;display="Product ext4";flashimg=1
+/super_image                   emmc    /dev/block/platform/bootdevice/by-name/super              flags=backup=1;display="super"
 #########################################################super-image#########################################################
-#
-/metadata                      ext4    /dev/block/platform/bootdevice/by-name/md_udc             flags=backup=1
 /metadata	                     emmc    /dev/block/platform/bootdevice/by-name/metadata           flags=backup=1
 /data		                       f2fs    /dev/block/platform/bootdevice/by-name/userdata           flags=backup=1;encryptable=/dev/block/platform/bootdevice/by-name/metadata 
 /tranfs                        ext4    /dev/block/platform/bootdevice/by-name/tranfs             flags=backup=1;display="Tranfs"
@@ -48,8 +38,6 @@
 /persistent	                   emmc    /dev/block/platform/bootdevice/by-name/frp                flags=display="frp";backup=1
 /md1img		                     emmc    /dev/block/platform/bootdevice/by-name/md1img             flags=display="Modem";backup=1;flashimg=1
 /md1dsp                        emmc    /dev/block/platform/bootdevice/by-name/md1dsp             flags=display="md1dsp";backup=1
-/md1arm7                       emmc    /dev/block/platform/bootdevice/by-name/md1arm7
-/md3img                        emmc    /dev/block/platform/bootdevice/by-name/md3img
 /scp1		                       emmc	   /dev/block/platform/bootdevice/by-name/scp1               flags=display="scp1";backup=1
 /scp2		                       emmc    /dev/block/platform/bootdevice/by-name/scp2               flags=backup=1;subpartitionof=/scp1         
 /tkv                           emmc    /dev/block/platform/bootdevice/by-name/tkv                flags=display="tkv";backup=1
