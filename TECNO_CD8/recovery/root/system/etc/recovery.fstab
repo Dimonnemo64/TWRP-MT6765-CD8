@@ -1,20 +1,12 @@
 #fstab file by lopestom
 #
-#mount point     fstype                   device                                           flags
+#mount point     fstype           device                                                   flags
 #########################################################super-image#########################################################
-#/system		       ext4	          /dev/block/mapper/system                                  flags=backup=1;display="System";flashimg=1;wipeingui
-#/vendor           ext4           /dev/block/mapper/vendor                                  flags=backup=1;display="Vendor";flashimg=1;wipeingui
-#/product          ext4           /dev/block/mapper/product                                 flags=backup=1;display="Product";flashimg=1;wipeingui
-/super_image       emmc           /dev/block/platform/bootdevice/by-name/super              flags=backup=1;display="Super"
+/system		         ext4	         /dev/block/mapper/system                                  flags=backup=1;display="System";flashimg=1;wipeingui
+/vendor            ext4          /dev/block/mapper/vendor                                  flags=backup=1;display="Vendor";flashimg=1;wipeingui
+/product           ext4          /dev/block/mapper/product                                 flags=backup=1;display="Product";flashimg=1;wipeingui
+/super_image       emmc          /dev/block/platform/bootdevice/by-name/super              flags=backup=1;display="Super"
 ######################################################################################################################################
-/product            ext4      /dev/block/platform/bootdevice/by-name/product                        flags=display="Product";backup=1;
-/product_image      emmc      /dev/block/platform/bootdevice/by-name/product                        flags=display="Product image";backup=1;flashimg=1;
-/system             ext4      /dev/block/platform/bootdevice/by-name/system                         flags=display="System";backup=1;
-/system_image       emmc      /dev/block/platform/bootdevice/by-name/system                         flags=display="System image";backup=1;flashimg=1;
-/vendor             ext4      /dev/block/platform/bootdevice/by-name/vendor                         flags=display="Vendor";backup=1;
-/vendor_image       emmc      /dev/block/platform/bootdevice/by-name/vendor                         flags=display="Vendor image";backup=1;flashimg=1;
-#########################################################super-image#########################################################
-#
 /metadata	        emmc           /dev/block/platform/bootdevice/by-name/metadata           flags=backup=1;flashimg=1
 /data             f2fs           /dev/block/platform/bootdevice/by-name/userdata           flags=backup=1;encryptable=/dev/block/platform/bootdevice/by-name/metadata 
 /boot             emmc           /dev/block/platform/bootdevice/by-name/boot               flags=backup=1;display="boot";flashimg=1
