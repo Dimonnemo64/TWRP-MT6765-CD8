@@ -1,11 +1,12 @@
-#fstab file by lopestom
-#
 #mount point     fstype           device                                                   flags
 #########################################################super-image#########################################################
-/system		         ext4	         /dev/block/mapper/system                                  flags=backup=1;display="System";flashimg=1;wipeingui
-/vendor            ext4          /dev/block/mapper/vendor                                  flags=backup=1;display="Vendor";flashimg=1;wipeingui
-/product           ext4          /dev/block/mapper/product                                 flags=backup=1;display="Product";flashimg=1;wipeingui
-/super_image       emmc          /dev/block/platform/bootdevice/by-name/super              flags=backup=1;display="Super"
+/system		         ext4          /dev/block/mapper/system                                flags=backup=1;display="System"
+/vendor            ext4          /dev/block/mapper/vendor                                flags=backup=1;display="Vendor"
+/product           ext4          /dev/block/mapper/product                               flags=backup=1;display="Product"
+/system_image	     emmc          /dev/block/mapper/system                                flags=backup=1;display="System Image";flashimg=1
+/vendor_image	     emmc          /dev/block/mapper/vendor                                flags=backup=1;display="Vendor Image";flashimg=1
+/product_image	   emmc          /dev/block/mapper/product                               flags=backup=1;display="Product Image";flashimg=1
+/super_image       emmc          /dev/block/platform/bootdevice/by-name/super            flags=backup=1;display="Super"
 ######################################################################################################################################
 /metadata	        emmc           /dev/block/platform/bootdevice/by-name/metadata           flags=backup=1;flashimg=1
 /data             f2fs           /dev/block/platform/bootdevice/by-name/userdata           flags=backup=1;encryptable=/dev/block/platform/bootdevice/by-name/metadata 
