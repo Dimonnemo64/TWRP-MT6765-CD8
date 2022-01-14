@@ -3,10 +3,10 @@
 /system		         ext4          /dev/block/mapper/system                                flags=backup=1;display="System"
 /vendor            ext4          /dev/block/mapper/vendor                                flags=backup=1;display="Vendor"
 /product           ext4          /dev/block/mapper/product                               flags=backup=1;display="Product"
-/system_image	     emmc          /dev/block/mapper/system                                flags=backup=1;display="System Image";flashimg=1
-/vendor_image	     emmc          /dev/block/mapper/vendor                                flags=backup=1;display="Vendor Image";flashimg=1
-/product_image	   emmc          /dev/block/mapper/product                               flags=backup=1;display="Product Image";flashimg=1
-/super_image       emmc          /dev/block/platform/bootdevice/by-name/super            flags=backup=1;display="Super"
+/system_image	     emmc          /dev/block/mapper/system                                flags=backup=1;display="System Image";flashimg=1;logical;slotselect
+/vendor_image	     emmc          /dev/block/mapper/vendor                                flags=backup=1;display="Vendor Image";flashimg=1;logical;slotselect
+/product_image	   emmc          /dev/block/mapper/product                               flags=backup=1;display="Product Image";flashimg=1;logical;slotselect
+/super_image       emmc          /dev/block/platform/bootdevice/by-name/super            flags=backup=1;display="Super";flashimg=1;logical;slotselect
 ######################################################################################################################################
 /metadata	        emmc           /dev/block/platform/bootdevice/by-name/metadata           flags=backup=1;flashimg=1
 /data             f2fs           /dev/block/platform/bootdevice/by-name/userdata           flags=backup=1;encryptable=/dev/block/platform/bootdevice/by-name/metadata 
