@@ -14,3 +14,11 @@ on post-fs
     symlink /dev/block/sdb /dev/block/mmcblk0boot1
     symlink /dev/block/mmcblk0boot0 /dev/block/platform/bootdevice/by-name/preloader_a
     symlink /dev/block/mmcblk0boot1 /dev/block/platform/bootdevice/by-name/preloader_b
+
+on property:sys.usb.config=fastboot
+    stop adbd
+    start fastbootd
+    
+on property:sys.usb.config=mtp,fastboot
+    stop adbd
+    start fastbootd
