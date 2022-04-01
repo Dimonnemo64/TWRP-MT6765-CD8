@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<recovery>
+	<details>
+		<resolution width="1080" height="1920"/>
+		<author>TeamWin and asynker29</author>
+		<theme>
+			<author>TeamWin and mayjann</author>
+			<title>material light</title>
+			<description>splash screen</description>
+			<themeversion>4</themeversion>
+		</theme>
+	</details>
+
+	<resources>
+		<font name="font_sl" filename="UbuntuMono-B.ttf" color="#7a8062" size="60"/>
+		<image name="splashlogo" filename="splashlogo" retainaspect="1"/>
+	</resources>
+
+	<variables>
+		<variable name="screen_width" value="1080"/>
+		<variable name="screen_height" value="2280"/>
+		<variable name="background_color" value="#fff9fd"/>
+		<variable name="text_color" value="#7a8062"/>
+	</variables>
+
+	<pages>
+		<page name="splash">
+			<background color="%background_color%"/>
+
+			<image>
+				<image resource="splashlogo"/>
+				<placement x="42" y="556"/>
+			</image>
+
+
+			<text color="%text_color%">
+				<font resource="font_sl"/>
+				<placement x="260" y="1800"/>
+				<text>powered by teamwin</text>
+			</text>
+		</page>
+	</pages>
+</recovery>
+
