@@ -1,3 +1,58 @@
+import /init.recovery.microtrust.rc
+import /init.recovery.prepdecrypt.rc
+
+on fs
+    install_keyring
+on property:ro.crypto.state=encrypted && property:ro.crypto.type=file
+    setprop crypto.ready 1
+
+on boot
+    # Enable Power modes and set the CPU Freq Sampling rates
+    write /proc/hps/enabled 0
+    write /sys/devices/system/cpu/cpu1/online 1
+    write /sys/devices/system/cpu/cpu2/online 1
+    write /sys/devices/system/cpu/cpu3/online 1
+    write /sys/devices/system/cpu/cpu4/online 1
+    write /sys/devices/system/cpu/cpu5/online 1
+    write /sys/devices/system/cpu/cpu6/online 1
+    write /sys/devices/system/cpu/cpu7/online 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "ondemand"
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "ondemand"
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "ondemand"
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "ondemand"
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor "ondemand"
+    write /sys/devices/system/cpu/cpu5/cpufreq/scaling_governor "ondemand"
+    write /sys/devices/system/cpu/cpu6/cpufreq/scaling_governor "ondemand"
+    write /sys/devices/system/cpu/cpu7/cpufreq/scaling_governor "ondemand"
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 300000
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 300000
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 300000
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq 300000
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 300000
+    write /sys/devices/system/cpu/cpu5/cpufreq/scaling_min_freq 300000
+    write /sys/devices/system/cpu/cpu6/cpufreq/scaling_min_freq 300000
+    write /sys/devices/system/cpu/cpu7/cpufreq/scaling_min_freq 300000
+    setprop recovery.perf.mode 0
+
+
+on property:recovery.perf.mode=1
+    write /sys/devices/system/cpu/cpu1/online 1
+    write /sys/devices/system/cpu/cpu2/online 1
+    write /sys/devices/system/cpu/cpu3/online 1
+    write /sys/devices/system/cpu/cpu4/online 1
+    write /sys/devices/system/cpu/cpu5/online 1
+    write /sys/devices/system/cpu/cpu6/online 1
+    write /sys/devices/system/cpu/cpu7/online 1
+
+on property:recovery.perf.mode=0
+    write /sys/devices/system/cpu/cpu1/online 0
+    write /sys/devices/system/cpu/cpu2/online 1
+    write /sys/devices/system/cpu/cpu3/online 0
+    write /sys/devices/system/cpu/cpu4/online 1
+    write /sys/devices/system/cpu/cpu5/online 0
+    write /sys/devices/system/cpu/cpu6/online 1
+    write /sys/devices/system/cpu/cpu7/online 0
+
 on init
     setprop sys.usb.configfs 1
     setprop sys.usb.ffs.aio_compat 1
@@ -15,10 +70,23 @@ on post-fs
     symlink /dev/block/mmcblk0boot0 /dev/block/platform/bootdevice/by-name/preloader_a
     symlink /dev/block/mmcblk0boot1 /dev/block/platform/bootdevice/by-name/preloader_b
 
-on property:sys.usb.config=fastboot
-    stop adbd
-    start fastbootd
-    
-on property:sys.usb.config=mtp,fastboot
-    stop adbd
-    start fastbootd
+service keymaster-4-0 /vendor/bin/hw/android.hardware.keymaster@4.0-service.beanpod
+    user root
+    group root drmrpc
+    disabled
+    seclabel u:r:recovery:s0
+
+on property:hwservicemanager.ready=true
+    start keymaster-4-0
+
+on property:ro.crypto.state=unsupported
+    stop teei_daemon
+    stop keymaster-4-0
+
+on property:ro.crypto.state=unencrypted
+    stop teei_daemon
+    stop keymaster-4-0
+
+on property:twrp.decrypt.done=true
+    stop teei_daemon
+    stop keymaster-4-0
